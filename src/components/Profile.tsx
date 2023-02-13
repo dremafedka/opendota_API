@@ -16,8 +16,8 @@ export const Profile = () => {
         fetchProfile(ID)
     }, [ID])
     return(
-        <div className={''}>
-            <div className={'flex justify-center'}>
+        <div className={'text-sm text-gray-500 sm:text-center dark:text-gray-400 bg-zinc-900'}>
+            <div className={'flex justify-center p-4'}>
                 <input
                 type="number"
                 placeholder={'enter profile id'}
@@ -27,23 +27,26 @@ export const Profile = () => {
                 //value={asd}
                 onChange={(e) => {setInputValue(parseInt(e.target.value))}}
             />
+                <button className={'bg-gray-300 hover:bg-gray-400 text-gray-800 text-sm py-2 px-4 rounded inline-flex items-center'} onClick={()=>{SetID(parseInt(String(inputValue)))}}>Search</button>
             </div>
-            <button onClick={()=>{SetID(parseInt(String(inputValue)))}}>Search</button>
-            <div>
-                <img src={profileInfo?.profile.avatarmedium} alt={'Here must be avatar'} />
+            <div className={'flex justify-center p-16'}>
+                <img src={profileInfo?.profile.avatarfull} />
             </div>
-            <div className={'flex justify-center'}>
-                Your MMR - {profileInfo?.solo_competitive_rank}
+            <div className={'flex justify-center p-4'}>
+                MMR - {profileInfo?.mmr_estimate.estimate}
             </div>
-            <div className={'flex'}>
-                Your nickname - {profileInfo?.profile.personaname}
+            <div className={'flex justify-center p-4'}>
+                Nickname - {profileInfo?.profile.personaname}
             </div>
-            <div className={'flex'}>
+            <div className={'flex justify-center p-4'}>
                 DotaPlus - {profileInfo?.profile.plus ? 'Yes': 'No'}
             </div>
-            <div>
-                URL - <a href={profileInfo?.profile.profileurl}>
+            <div className={'flex justify-center p-4'}>
+                URL - <a className={'hover:underline'} href={profileInfo?.profile.profileurl}>
                 {profileInfo?.profile.profileurl}</a>
+            </div>
+            <div className={'flex justify-center p-4'}>
+                ID - {profileInfo?.profile.steamid}
             </div>
         </div>
     )
